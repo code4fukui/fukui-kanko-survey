@@ -2,7 +2,7 @@
 
 ## 解析アプリ
 
-- [アンケート簡易解析アプリ](https://code4fukui.github.io/fukui-kanko-stat/)
+- [福井県観光アンケートオープンデータ解析ツール](https://github.com/code4fukui/fukui-kanko-stat/)
 
 ## ライセンス
 
