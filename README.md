@@ -1,5 +1,11 @@
 # 福井県観光アンケートオープンデータ
 
+## オープンデータ
+
+- 福井県観光アンケート [全データ](all.csv) / [月別](monthly) / [日別](daily)
+- "回答エリア"マスター [area.csv](area.csv)
+- エリア別スポット [spot.csv](spot.csv)
+
 ## 解析アプリ
 
 - [福井県観光アンケートオープンデータ解析ツール](https://github.com/code4fukui/fukui-kanko-stat/)
