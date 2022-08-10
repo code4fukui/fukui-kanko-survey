@@ -13,5 +13,4 @@
 ## ライセンス
 
 - [CC BY](https://creativecommons.org/licenses/by/4.0/deed.ja) [福井県観光連盟](https://www.fuku-e.com/)
-- 福井県観光連盟によるオープンデータです。出典元を記載いただければどなたでも自由にお使いいただけます
-
+- [福井県観光データ分析システム「FTAS」](https://www.fuku-e.com/feature/detail_266.html)により公開された、福井県観光連盟によるオープンデータです。出典元を記載いただければどなたでも自由にお使いいただけます
