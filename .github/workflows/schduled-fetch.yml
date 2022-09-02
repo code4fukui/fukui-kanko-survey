@@ -1,0 +1,41 @@
+name: Scheduled 
+
+on:
+  schedule:
+    # 2:25分に実行 JST-9+24=17(UTC)
+    - cron: '25 17 * * *'
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - name: fetch
+        env:
+          USERHOST: ${{secrets.SECRET_USER_HOST}}
+          PASSWORD: ${{secrets.SECRET_PASSWORD}}
+        run: |
+          cd data/daily
+          DATE=`date -d '1 days ago' '+%Y%m%d'`
+          expect -c "spawn sftp ${USERHOST}
+          expect \"password: \"
+          send \"${PASSWORD}\r\"
+          expect \"sftp> \"
+          send \"get www/_data/3/${DATE}.csv\r\"
+          expect \"sftp> \"
+          send \"quit\r\"
+          "
+          cd ..
+          deno run -A normalizeData.js
+          deno run -A makeMonthly.js
+      - name: commit and push
+        run: |
+          git config --global user.email "workflow@example.com"
+          git config --global user.name "workflow user"
+          git add .
+          git commit -m 'update data' && git push ${REPO} HEAD:${{github.event.pull_request.head.ref}} || true
+          git push
