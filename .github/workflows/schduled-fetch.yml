@@ -18,7 +18,8 @@ jobs:
         run: |
           sudo apt-get install -y expect openssh-client
           cd daily
-          DATE=`date -d '1 days ago' '+%Y%m%d'`
+          #DATE=`date -d '1 days ago' '+%Y%m%d'` # for JST
+          DATE=`date '+%Y%m%d'`
           expect -c "spawn sftp ${{secrets.FTP_USER_HOST}}
           expect \"password: \"
           send \"${{secrets.FTP_PASSWORD}}\r\"
