@@ -3,8 +3,7 @@ name: Scheduled
 on:
   schedule:
     # 2:25分に実行 JST-9+24=17(UTC)
-    #- cron: '25 17 * * *'
-    - cron: '15 13 * * *'
+    - cron: '25 17 * * *'
 
 jobs:
   build:
