@@ -4,7 +4,7 @@ on:
   schedule:
     # 2:25分に実行 JST-9+24=17(UTC)
     #- cron: '25 17 * * *'
-    - cron: '50 9 * * *'
+    - cron: '20 10 * * *'
 
 jobs:
   build:
@@ -16,16 +16,13 @@ jobs:
         with:
           deno-version: v1.x
       - name: fetch
-        env:
-          USERHOST: ${{secrets.SECRET_USER_HOST}}
-          PASSWORD: ${{secrets.SECRET_PASSWORD}}
         run: |
           sudo apt-get install -y expect openssh-client
           cd daily
           DATE=`date -d '1 days ago' '+%Y%m%d'`
-          expect -c "spawn sftp ${USERHOST}
+          expect -c "spawn sftp ${{secrets.SECRET_USER_HOST}}
           expect \"password: \"
-          send \"${PASSWORD}\r\"
+          send \"${{secrets.SECRET_PASSWORD}}\r\"
           expect \"sftp> \"
           send \"get www/_data/3/${DATE}.csv\r\"
           expect \"sftp> \"
