@@ -4,7 +4,7 @@ on:
   schedule:
     # 2:25分に実行 JST-9+24=17(UTC)
     #- cron: '25 17 * * *'
-    - cron: '35 3 * * *'
+    - cron: '35 6 * * *'
 
 jobs:
   build:
@@ -20,6 +20,7 @@ jobs:
           USERHOST: ${{secrets.SECRET_USER_HOST}}
           PASSWORD: ${{secrets.SECRET_PASSWORD}}
         run: |
+          dnf install -y expect spawn sftp
           cd daily
           DATE=`date -d '1 days ago' '+%Y%m%d'`
           expect -c "spawn sftp ${USERHOST}
