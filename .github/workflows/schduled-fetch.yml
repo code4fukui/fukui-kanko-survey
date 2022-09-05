@@ -20,7 +20,7 @@ jobs:
           USERHOST: ${{secrets.SECRET_USER_HOST}}
           PASSWORD: ${{secrets.SECRET_PASSWORD}}
         run: |
-          dnf install -y expect spawn sftp
+          apt install -y expect sftp
           cd daily
           DATE=`date -d '1 days ago' '+%Y%m%d'`
           expect -c "spawn sftp ${USERHOST}
