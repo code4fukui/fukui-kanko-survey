@@ -4,7 +4,7 @@ on:
   schedule:
     # 2:25分に実行 JST-9+24=17(UTC)
     #- cron: '25 17 * * *'
-    - cron: '50 10 * * *'
+    - cron: '15 2 * * *'
 
 jobs:
   build:
@@ -20,9 +20,9 @@ jobs:
           sudo apt-get install -y expect openssh-client
           cd daily
           DATE=`date -d '1 days ago' '+%Y%m%d'`
-          expect -c "spawn sftp ${{secrets.SECRET_USER_HOST}}
+          expect -c "spawn sftp ${{secrets.FTP_USER_HOST}}
           expect \"password: \"
-          send \"${{secrets.SECRET_PASSWORD}}\r\"
+          send \"${{secrets.FTP_PASSWORD}}\r\"
           expect \"sftp> \"
           send \"get www/_data/3/${DATE}.csv\r\"
           expect \"sftp> \"
