@@ -28,13 +28,16 @@ jobs:
           expect \"sftp> \"
           send \"quit\r\"
           "
+          ls -l
           cd ..
+      - name: make
+        run: |
           deno run -A normalizeData.js
           deno run -A makeMonthly.js
       - name: commit and push
         run: |
           git config --global user.email "workflow@example.com"
           git config --global user.name "workflow user"
-          git add -A
+          git add .
           git commit -m 'update data' && git push ${REPO} HEAD:${{github.event.pull_request.head.ref}} || true
           git push
