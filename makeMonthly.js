@@ -11,22 +11,26 @@ for (const fn of list) {
   // monthly
   const fn2 = fn.substring(0, 6) + ".csv";
   const ml = mlist[fn2];
+  console.log(fn, fn2, fn2 == "202305", ml ? ml.length : 0);
   if (ml) {
     csv.forEach(c => ml.push(c));
   } else {
-    mlist[fn2] = csv;
+    const ml2 = mlist[fn2] = [];
+    csv.forEach(c => ml2.push(c));
   }
+  
   // fiscal yearly
   const day = fn.substring(0, 8);
   const d = new Day(day);
-  
-  const fn3 = d.getFiscalYear() + ".csv";
+  const fn3 = "" + d.getFiscalYear() + ".csv";
   const yl = ylist[fn3];
   if (yl) {
     csv.forEach(c => yl.push(c));
   } else {
-    ylist[fn3] = csv;
+    const yl2 = ylist[fn3] = [];
+    csv.forEach(c => yl2.push(c));
   }
+  
   // all
   csv.forEach(c => all.push(c));
 }
