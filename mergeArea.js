@@ -8,6 +8,7 @@ for (const a of area2) {
     if (n.エリア名 != a.エリア名) {
       //throw new Error("area name not match: " + n.エリア名 + " " + a.エリア名);
       console.log("area name not match: " + a.エリア名 + " -> " + n.エリア名);
+      n.旧エリア名 = a.エリア名;
     }
   } else {
     a.通し番号 = "";
