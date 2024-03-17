@@ -6,7 +6,7 @@ const list = (await dir2array("./monthly")).filter(f => f.length == "202205.csv"
 console.log(list);
 
 const ylist = {};
-const all = [];
+//const all = [];
 for (const fn of list) {
   const csv = CSV.toJSON(await CSV.fetch("monthly/" + fn));
   console.log(fn);
@@ -24,12 +24,14 @@ for (const fn of list) {
   }
   
   // all
-  csv.forEach(c => all.push(c));
+  //csv.forEach(c => all.push(c));
 }
 for (const name in ylist) {
   const data = ylist[name];
   await Deno.writeTextFile("fiscalyearly/" + name, CSV.stringify(data));
   console.log(name);
 }
+/*
 await Deno.writeTextFile("all.csv", CSV.stringify(all));
 console.log("all.csv");
+*/
