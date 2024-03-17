@@ -1,6 +1,6 @@
 import { CSV } from "https://js.sabae.cc/CSV.js";
 import { dir2array } from "https://js.sabae.cc/dir2array.js";
-import { Day } from "https://js.sabae.cc/DateTime.js";
+//import { Day } from "https://js.sabae.cc/DateTime.js";
 
 const list = (await dir2array("./daily")).filter(f => f.length == "20220527.csv".length && f.endsWith(".csv")).sort();
 const mlist = {};
@@ -19,6 +19,7 @@ for (const fn of list) {
     csv.forEach(c => ml2.push(c));
   }
   
+  /*
   // fiscal yearly
   const day = fn.substring(0, 8);
   const d = new Day(day);
@@ -30,18 +31,20 @@ for (const fn of list) {
     const yl2 = ylist[fn3] = [];
     csv.forEach(c => yl2.push(c));
   }
-  
+  */
   // all
-  csv.forEach(c => all.push(c));
+  //csv.forEach(c => all.push(c));
 }
 for (const name in mlist) {
   const data = mlist[name];
   await Deno.writeTextFile("monthly/" + name, CSV.stringify(data));
   console.log(name);
 }
+/*
 for (const name in ylist) {
   const data = ylist[name];
   await Deno.writeTextFile("fiscalyearly/" + name, CSV.stringify(data));
   console.log(name);
 }
 await Deno.writeTextFile("all.csv", CSV.stringify(all));
+*/
