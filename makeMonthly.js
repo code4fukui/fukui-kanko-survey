@@ -31,9 +31,9 @@ for (const fn of list) {
     const yl2 = ylist[fn3] = [];
     csv.forEach(c => yl2.push(c));
   }
-  */
   // all
-  //csv.forEach(c => all.push(c));
+  csv.forEach(c => all.push(c));
+  */
 }
 for (const name in mlist) {
   const data = mlist[name];
