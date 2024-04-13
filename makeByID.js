@@ -10,11 +10,11 @@ for (const fn of list) {
   const csv = await CSV.fetchJSON("daily/" + fn);
   for (const d of csv) {
     const id = parseInt(d.会員ID);
-    const path = "byid/" + ((id / 1000) >> 0);
-    const fn = path + "/" + id + ".csv";
+    const path = "byid/" + ((id / 100) >> 0) + "00"; // merge by 100IDs
+    const fn = path + ".csv";
     const data = await CSV.fetchJSON(fn, []);
     data.push(d);
-    await Deno.mkdir(path, { recursive: true });
+    //await Deno.mkdir(path, { recursive: true });
     await Deno.writeTextFile(fn, CSV.stringify(data));
   }
 }
