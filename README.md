@@ -2,7 +2,7 @@
 
 ## オープンデータ
 
-- 福井県観光アンケート [全データ](all.csv) ([https://code4fukui.github.io/fukui-kanko-survey/all.csv](https://code4fukui.github.io/fukui-kanko-survey/all.csv)) / [年度別](fiscalyearly) / [月別](monthly) / [日別](daily)
+- 福井県観光アンケート [日時更新、月別](monthly) / [日時更新、日別](daily) / アーカイブ [年度別](fiscalyearly)
 - "回答エリア"マスター [area.csv](area.csv) ([https://code4fukui.github.io/fukui-kanko-survey/area.csv](https://code4fukui.github.io/fukui-kanko-survey/area.csv))
 - エリア別スポット [spot.csv](spot.csv) ([https://code4fukui.github.io/fukui-kanko-survey/spot.csv](https://code4fukui.github.io/fukui-kanko-survey/spot.csv))
 
