@@ -2,7 +2,7 @@ import { CSV } from "https://js.sabae.cc/CSV.js";
 import { dir2array } from "https://js.sabae.cc/dir2array.js";
 import { Day } from "https://js.sabae.cc/DateTime.js";
 
-const writeall = false;
+const writeall = true;
 
 const list = (await dir2array("./monthly")).filter(f => f.length == "202205.csv".length && f.endsWith(".csv")).sort();
 console.log(list);
