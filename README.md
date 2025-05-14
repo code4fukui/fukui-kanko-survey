@@ -21,3 +21,10 @@
 ```
 deno run -A makeYearly.js
 ```
+
+## エリア情報の更新
+
+1. 更新用のエリア情報をCSVファイルで作成する
+2. `mergeArea2.deno.js`の`AREA_FILES`に、更新用のCSVファイルを追加する
+3. `mergeArea2.deno.js`を実行する
+4. コミットしてPRを作成する
