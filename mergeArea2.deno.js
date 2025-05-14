@@ -5,13 +5,15 @@ import { colors } from "https://deno.land/x/cliffy@v1.0.0-rc.4/ansi/colors.ts";
 const AREA_FILES = [
   "area2023.csv",
   "area2024.csv",
+  "area20250513.csv",
 ];
 
 /** @type {Array<Record<string, string>>} */
-const processAreas = CSV.toJSON(await CSV.fetch("area2022.csv")).map(area => ({...area, 通し番号: "" }));
+let processAreas = CSV.toJSON(await CSV.fetch("area2022.csv"))
 
 for (const filepath of AREA_FILES) {
   console.log("processing", filepath);
+  processAreas = processAreas.map(area => ({...area, 通し番号: "" }));
 
   /** @type {Array<Record<string, string>>} */
   const updatedAreas = CSV.toJSON(await CSV.fetch(filepath));
@@ -31,6 +33,8 @@ for (const filepath of AREA_FILES) {
             updatedArea.エリア名
         );
         updatedArea.旧エリア名 = existingArea.エリア名;
+      } else if (existingArea.旧エリア名) {
+        updatedArea.旧エリア名 = existingArea.旧エリア名;
       }
       processAreas[existingAreaIndex] = {
         ...updatedArea,
