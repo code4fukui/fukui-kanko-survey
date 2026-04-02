@@ -1,31 +1,16 @@
-# Fukui Kanko Survey
+# fukui-kanko-survey
 
-> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+オープンデータのリポジトリです。
 
-Open data repository. Columns: ﻿day, count.
-
-## Demo
+## デモ
 
 https://code4fukui.github.io/fukui-kanko-survey/
 
-## Features
+## データ構造
 
-- ES module compatible with Deno and modern browsers
-- Open data CSV with columns: ﻿day, count
+カラム: ﻿day, count
 
-## Data
-
-Columns: ﻿day, count
-
-## Installation & Setup
-
-No build step required. Clone and open in a browser or use with Deno:
-
-```bash
-git clone https://github.com/code4fukui/fukui-kanko-survey.git
-```
-
-## References
+## 参考リンク
 
 - [福井県観光アンケートオープンデータ解析ツール](https://github.com/code4fukui/fukui-kanko-stat/)
 - [CC BY](https://creativecommons.org/licenses/by/4.0/deed.ja) [福井県観光連盟](https://www.fuku-e.com/)
