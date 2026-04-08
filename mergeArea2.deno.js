@@ -47,18 +47,10 @@ for (const filepath of AREA_FILES) {
   }
 }
 
-// エリア削除
-const deleteSet = new Set(
-  CSV.toJSON(await CSV.fetch("area_delete.csv")).map(r => r.親番号)
-);
-
-const result = processAreas
-  .filter(area => !deleteSet.has(area.親番号))  //エリア削除
-  .map((area) => ({
-    id: parseInt(area.親番号) - 300000,
-    ...area,
-  }));
-
+const result = processAreas.map((area) => ({
+  id: parseInt(area.親番号) - 300000,
+  ...area,
+}));
 result.sort((a, b) => parseInt(a.id) - parseInt(b.id));
 console.log(colors.bgBlue("sum:"), result.length);
 await Deno.writeTextFile("area.csv", CSV.stringify(result));
