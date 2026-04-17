@@ -28,3 +28,4 @@ deno run -A makeYearly.js
 2. `mergeArea2.deno.js`の`AREA_FILES`に、更新用のCSVファイルを追加する
 3. `mergeArea2.deno.js`を実行する
 4. コミットしてPRを作成する
+5. [fukui-kanko-stat](https://github.com/code4fukui/fukui-kanko-stat)の`getSurvey.js`を更新する
