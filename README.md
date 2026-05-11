@@ -1,31 +1,88 @@
-# FTASオープンデータ on GitHub
+# Fukui Tourism Survey Open Data
 
-## オープンデータ
+Open data from the Fukui Prefecture Tourism Survey system, published by the [Fukui Tourism Federation](https://www.fuku-e.com/) and hosted by [Code4Fukui](https://github.com/code4fukui).
 
-- 福井県観光アンケート [日時更新、月別](monthly) / [日時更新、日別](daily) / アーカイブ [年度別](fiscalyearly)
-- "回答エリア"マスター [area.csv](area.csv) ([https://code4fukui.github.io/fukui-kanko-survey/area.csv](https://code4fukui.github.io/fukui-kanko-survey/area.csv))
-- エリア別スポット [spot.csv](spot.csv) ([https://code4fukui.github.io/fukui-kanko-survey/spot.csv](https://code4fukui.github.io/fukui-kanko-survey/spot.csv))
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
 
-## 活用アプリ
+---
 
-- [福井県観光アンケートオープンデータ解析ツール](https://github.com/code4fukui/fukui-kanko-stat/)
+## Overview
 
-## ライセンス
+This repository provides machine-readable open data from the **FTAS** (福井県観光データ分析システム — Fukui Prefecture Tourism Data Analysis System). The system collects responses via QR-code-based survey terminals at tourist spots across Fukui Prefecture.
 
-- [CC BY](https://creativecommons.org/licenses/by/4.0/deed.ja) [福井県観光連盟](https://www.fuku-e.com/)
-- [福井県観光データ分析システム「FTAS」](https://www.fuku-e.com/feature/detail_266.html)により公開された、福井県観光連盟によるオープンデータです。出典元を記載いただければどなたでも自由にお使いいただけます
+The raw survey data is fetched daily from an SFTP server, processed by Deno scripts, and committed to this repository via automated GitHub Actions workflows.
 
-## バッチ処理
+The data covers approximately **98 tourist areas** across **17 municipalities** in Fukui Prefecture, including major landmarks such as Eiheiji Temple, the Echizen Dinosaur Museum, Tojinbo Cliffs, and Awara Onsen.
 
-年度変更で動かす → filicalyearly に年度ごとにバックアップ
+## Data Files
+
+The data is available as CSV files, which can be accessed directly or downloaded.
+
+### Survey Response Data
+
+| File | Description |
+|---|---|
+| [`all.csv`](all.csv) | All survey responses, with one row per respondent. Updated daily. |
+| [`all-cnt.csv`](all-cnt.csv) | A daily summary of response counts (`day`, `count`). |
+| [`byid/`](byid/) | Survey responses filtered by a single tourist area/facility. The 6-digit filename `{id}.csv` corresponds to the area ID. |
+| [`byid/000.csv`](byid/000.csv) | A template file containing only the header row for the survey data schema. |
+
+**Direct Download URLs (via GitHub Pages):**
 ```
-deno run -A makeYearly.js
+https://code4fukui.github.io/fukui-kanko-survey/all.csv
+https://code4fukui.github.io/fukui-kanko-survey/all-cnt.csv
+https://code4fukui.github.io/fukui-kanko-survey/byid/{id}.csv
 ```
 
-## エリア情報の更新
+### Area Master Data
 
-1. 更新用のエリア情報をCSVファイルで作成する
-2. `mergeArea2.deno.js`の`AREA_FILES`に、更新用のCSVファイルを追加する
-3. `mergeArea2.deno.js`を実行する
-4. コミットしてPRを作成する
-5. [fukui-kanko-stat](https://github.com/code4fukui/fukui-kanko-stat)の`getSurvey.js`を更新する
+| File | Description |
+|---|---|
+| [`area.csv`](area.csv) | The current master list of all tourist areas, including IDs, names, descriptions, and coordinates. |
+| [`area2022.csv`](area2022.csv) | Area master snapshot for fiscal year 2022. |
+| [`area2023.csv`](area2023.csv) | Area master snapshot for fiscal year 2023. |
+| [`area2024.csv`](area2024.csv) | Area master snapshot for fiscal year 2024. |
+
+**Direct Download URL (via GitHub Pages):**
+```
+https://code4fukui.github.io/fukui-kanko-survey/area.csv
+```
+
+## Data Schema
+
+### `area.csv` — Area Master
+
+| Column (Japanese) | Meaning |
+|---|---|
+| `id` | Sequential area ID |
+| `市町名` | Municipality name |
+| `親番号` | Parent area number (6-digit ID used for `byid/` filenames) |
+| `エリア名` | Area name |
+| `エリア説明文` | Area description |
+| `通し番号` | Internal serial number |
+| `緯度` / `経度` | Latitude / Longitude |
+| `旧エリア名` | Previous area name (if renamed) |
+
+### Survey Response Files (`all.csv`, `byid/*.csv`)
+
+Each row represents one completed survey. Key columns include:
+
+*   **Respondent Profile:** Gender, birth year, age group, home prefecture, household income.
+*   **Visit Details:** Response timestamp, response area, municipality, number of overnight stays, travel companions.
+*   **Visit Purpose:** A series of binary flag columns for motivations like "Hot springs," "Local cuisine," "Historical sites," "Shopping," etc.
+*   **Information Source:** A series of binary flag columns for how visitors learned about the area, such as "Guidebooks," "Internet/apps," "Instagram," "Friends," etc.
+*   **Satisfaction & Feedback:** Includes satisfaction scores, Net Promoter Score (NPS), and free-text comments on inconveniences.
+
+## Usage
+
+You can download the CSV files for local analysis using tools like `curl` or by visiting the direct download URLs in your browser.
+
+```bash
+# Download the complete survey dataset
+curl -L -o all.csv https://code4fukui.github.io/fukui-kanko-survey/all.csv
+
+# Download the current area master list
+curl -L -o area.csv https://code4fukui.github.io/fukui-kanko-survey/area.csv
+```
+
+The data can be loaded into any spreadsheet software or data analysis tool (e.g., pandas, R, Excel) for further exploration.
