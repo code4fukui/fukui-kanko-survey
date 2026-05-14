@@ -29,7 +29,7 @@
 ```
 https://code4fukui.github.io/fukui-kanko-survey/all.csv
 https://code4fukui.github.io/fukui-kanko-survey/all-cnt.csv
-https://code4fukui.github.io/fukui-kanko-survey/byid/{id}.csv
+https://github.com/code4fukui/fukui-kanko-survey
 ```
 
 ### エリアマスターデータ

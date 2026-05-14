@@ -31,7 +31,7 @@ The data is available as CSV files, which can be accessed directly or downloaded
 ```
 https://code4fukui.github.io/fukui-kanko-survey/all.csv
 https://code4fukui.github.io/fukui-kanko-survey/all-cnt.csv
-https://code4fukui.github.io/fukui-kanko-survey/byid/{id}.csv
+https://github.com/code4fukui/fukui-kanko-survey
 ```
 
 ### Area Master Data
