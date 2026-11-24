@@ -9,6 +9,7 @@ const AREA_FILES = [
   "area20260407.csv",
   "area20260521.csv",
   "area20260818.csv",
+  "area20261124.csv",
 ];
 
 /** @type {Array<Record<string, string>>} */
