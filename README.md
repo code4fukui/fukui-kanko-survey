@@ -42,6 +42,8 @@ https://code4fukui.github.io/fukui-kanko-survey/byid/{id}.csv
 | [`area20250513.csv`](area20250513.csv) | Area master snapshot as of May 13, 2025. |
 | [`area20260407.csv`](area20260407.csv) | Area master snapshot as of April 7, 2026. |
 | [`area20260521.csv`](area20260521.csv) | Area master snapshot as of May 21, 2026. |
+| [`area20260818.csv`](area20260818.csv) | Area master snapshot as of August 18, 2026. |
+| [`area20261124.csv`](area20261124.csv) | Area master snapshot as of November 24, 2026. |
 
 **Direct access via GitHub Pages:**
 ```
